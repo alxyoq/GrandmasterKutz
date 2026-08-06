@@ -17,6 +17,8 @@ export default function Home() {
 
         {/* comic page: panels separated by paper gutters */}
         <div className="mx-auto flex max-w-page flex-col gap-[var(--gutter)] px-[var(--gutter)] pb-[var(--gutter)]">
+          <MapPanel />
+
           <div className="grid grid-cols-1 gap-[var(--gutter)] md:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]">
             <Team />
             <Services />
@@ -30,11 +32,9 @@ export default function Home() {
           </div>
 
           <About />
-          <MapPanel />
         </div>
       </main>
       <Footer />
     </>
   );
 }
-

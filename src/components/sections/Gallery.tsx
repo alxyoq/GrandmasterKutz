@@ -17,7 +17,13 @@ export function Gallery() {
   if (!site.gallery.enabled) return null;
 
   return (
-    <Panel id="gallery" as="section" shape="b" mobileShape="flat" innerClassName="bg-ink">
+    <Panel
+      id="gallery"
+      as="section"
+      shape="b"
+      mobileShape="flat"
+      innerClassName="bg-ink"
+    >
       <div className="royal-grid absolute inset-0 opacity-20" />
       <div className="relative px-3 py-12 md:px-6 md:py-16">
         <Reveal className="mb-9 flex justify-center">
@@ -47,15 +53,21 @@ export function Gallery() {
           ))}
         </ul>
 
-        <Reveal delay={240} className="mt-8 text-center">
-          <a
-            href="https://www.instagram.com/grandmasterkutz/"
-            target="_blank"
-            rel="noreferrer"
-            className="ui-font link-underline text-xs font-bold uppercase tracking-[0.2em] text-brand-soft"
-          >
-            More fresh work on Instagram
-          </a>
+        <Reveal
+          delay={240}
+          className="mt-8 flex flex-wrap justify-center gap-x-8 gap-y-3 text-center"
+        >
+          {site.locations.map((location) => (
+            <a
+              key={location.id}
+              href={location.instagramUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="ui-font link-underline text-xs font-bold uppercase tracking-[0.2em] text-brand-soft"
+            >
+              {location.city} on Instagram
+            </a>
+          ))}
         </Reveal>
       </div>
     </Panel>

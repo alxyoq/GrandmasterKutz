@@ -32,8 +32,12 @@ export function Footer() {
                   className="display text-2xl uppercase tracking-[0.06em] text-paper/40"
                 >
                   {site.brand.tagline}
-                  <span className="mx-8 text-brand">/</span>
-                  {site.contact.phone}
+                  {site.locations.map((location) => (
+                    <span key={location.id}>
+                      <span className="mx-8 text-brand">/</span>
+                      {location.city} · {location.phone}
+                    </span>
+                  ))}
                   <span className="mx-8 text-brand">/</span>
                 </span>
               ))}
@@ -69,7 +73,11 @@ export function Footer() {
                 className="h-full w-full object-contain"
               />
             ) : (
-              <PlaceholderArt variant="badge" label={initials()} className="bg-transparent" />
+              <PlaceholderArt
+                variant="badge"
+                label={initials()}
+                className="bg-transparent"
+              />
             )}
           </div>
           <p className="ui-font text-center text-[11px] uppercase tracking-[0.22em] text-paper/50">
@@ -79,12 +87,7 @@ export function Footer() {
 
         {/* cta + socials */}
         <div className="flex flex-col items-start gap-5 md:items-end">
-          <a
-            href={site.booking.url}
-            target="_blank"
-            rel="noreferrer"
-            className="btn-comic px-6 py-3.5 text-xs"
-          >
+          <a href={site.booking.url} className="btn-comic px-6 py-3.5 text-xs">
             {site.booking.footerLabel}
           </a>
           <ul className="flex items-center gap-3">
@@ -105,9 +108,20 @@ export function Footer() {
         </div>
       </div>
 
-      <p className="ui-font relative mt-12 text-center text-[10px] uppercase tracking-[0.24em] text-paper/50">
-        805 Creek Road · Bellmawr, New Jersey · Walk-ins + appointments
-      </p>
+      <div className="ui-font relative mt-12 flex flex-wrap justify-center gap-x-6 gap-y-2 px-6 text-center text-[10px] uppercase tracking-[0.18em] text-paper/50">
+        {site.locations.map((location) => (
+          <a
+            key={location.id}
+            href={location.mapLinkUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="transition-colors hover:text-paper"
+          >
+            {location.addressLine}
+          </a>
+        ))}
+        <span>Walk-ins + appointments</span>
+      </div>
     </footer>
   );
 }

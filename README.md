@@ -1,6 +1,9 @@
 # GrandmasterKutz Barbershop
 
-Production website for GrandmasterKutz Barbershop at 805 Creek Road in Bellmawr, New Jersey.
+Production website for GrandmasterKutz Barbershop in Bellmawr and Glassboro, New Jersey:
+
+- 805 Creek Road, Bellmawr, NJ 08031
+- 640 Delsea Drive North, Glassboro, NJ 08028
 
 ## Stack
 
@@ -29,4 +32,4 @@ The production build is written to `out/`, which Netlify publishes directly.
 
 ## Business content sources
 
-Business details, team, representative starting prices, rating proof and portfolio imagery were researched from the public GrandmasterKutz Bellmawr profiles on Google, Facebook, Instagram and Booksy on August 6, 2026. Prices and individual barber hours can change, so all appointment CTAs route to the live Booksy listing.
+Business details, location contacts and rating proof were researched from the public GrandmasterKutz profiles on Google, Facebook, Instagram and Booksy on August 6, 2026. The displayed roster, representative starting prices and portfolio imagery are sourced from Bellmawr profiles and are labeled accordingly. Prices and individual barber hours can change, so each location routes to its own live Booksy listing.

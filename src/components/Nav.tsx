@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { site } from "@/config/site";
 import { Wordmark } from "./Wordmark";
@@ -28,11 +28,14 @@ export function Nav() {
     };
   }, [open]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!open) return;
 
     const trigger = openButtonRef.current;
     closeButtonRef.current?.focus();
+    const focusFrame = window.requestAnimationFrame(() => {
+      closeButtonRef.current?.focus();
+    });
 
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
@@ -51,6 +54,12 @@ export function Nav() {
       const last = focusable[focusable.length - 1];
       if (!first || !last) return;
 
+      if (!drawerRef.current.contains(document.activeElement)) {
+        event.preventDefault();
+        (event.shiftKey ? last : first).focus();
+        return;
+      }
+
       if (event.shiftKey && document.activeElement === first) {
         event.preventDefault();
         last.focus();
@@ -62,6 +71,7 @@ export function Nav() {
 
     document.addEventListener("keydown", onKeyDown);
     return () => {
+      window.cancelAnimationFrame(focusFrame);
       document.removeEventListener("keydown", onKeyDown);
       trigger?.focus();
     };
@@ -120,7 +130,7 @@ export function Nav() {
         aria-modal="true"
         aria-label="Navigation menu"
         className={cn(
-          "fixed inset-0 z-[70] transition-[opacity,visibility] duration-300 md:hidden",
+          "fixed inset-0 z-[70] transition-opacity duration-300 md:hidden",
           open
             ? "pointer-events-auto visible opacity-100"
             : "pointer-events-none invisible opacity-0",
@@ -181,8 +191,6 @@ export function Nav() {
           <div className="space-y-5 px-6 pb-10">
             <a
               href={site.booking.url}
-              target="_blank"
-              rel="noreferrer"
               onClick={() => setOpen(false)}
               className="btn-comic w-full px-6 py-4 text-base"
             >
@@ -202,9 +210,18 @@ export function Nav() {
                 </a>
               ))}
             </div>
-            <p className="ui-font text-xs uppercase tracking-[0.24em] text-paper/60">
-              {site.contact.addressLine}
-            </p>
+            <div className="space-y-1">
+              {site.locations.map((location) => (
+                <a
+                  key={location.id}
+                  href={`#location-${location.id}`}
+                  onClick={() => setOpen(false)}
+                  className="ui-font block text-xs uppercase tracking-[0.18em] text-paper/60 transition-colors hover:text-paper"
+                >
+                  {location.city} · {location.streetAddress}
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </div>
