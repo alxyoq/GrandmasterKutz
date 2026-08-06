@@ -2,7 +2,7 @@ import { site } from "@/config/site";
 import { ArrowUpRight, Crown, Pin, SocialIcon } from "./Icons";
 
 export function Hero() {
-  const { hero, contact, booking, brand } = site;
+  const { hero, booking, brand, locations } = site;
 
   return (
     <section
@@ -70,28 +70,23 @@ export function Hero() {
             className="animate-rise mx-auto mt-6 max-w-xl text-base font-medium leading-relaxed text-paper/85 md:mx-0 md:text-xl"
             style={{ animationDelay: "170ms" }}
           >
-            A sharp, multicultural Bellmawr barbershop where every cut is
-            treated like the main event.
+            Two South Jersey shops. One Grandmaster standard. Find sharp,
+            multicultural barbering in Bellmawr and Glassboro.
           </p>
 
           <div
             className="animate-rise mt-8 flex flex-col justify-center gap-3 sm:flex-row md:justify-start"
             style={{ animationDelay: "240ms" }}
           >
-            <a
-              href={booking.url}
-              target="_blank"
-              rel="noreferrer"
-              className="btn-comic px-7 py-4 text-sm"
-            >
+            <a href={booking.url} className="btn-comic px-7 py-4 text-sm">
               {booking.label}
               <ArrowUpRight className="h-4 w-4" />
             </a>
             <a
-              href={contact.phoneHref}
+              href="#gallery"
               className="btn-comic btn-ghost px-7 py-4 text-sm"
             >
-              CALL {contact.phone}
+              SEE THE WORK
             </a>
           </div>
 
@@ -99,15 +94,19 @@ export function Hero() {
             className="animate-rise mt-8 flex flex-col items-center gap-4 md:flex-row"
             style={{ animationDelay: "310ms" }}
           >
-            <a
-              href={contact.mapLinkUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="ui-font flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.12em] text-paper/80 transition-colors hover:text-brand-soft"
-            >
-              <Pin className="h-4 w-4 shrink-0 text-brand" />
-              {contact.addressLine}
-            </a>
+            <ul className="flex flex-col items-center gap-2 sm:flex-row sm:gap-4 md:items-start">
+              {locations.map((location) => (
+                <li key={location.id}>
+                  <a
+                    href={`#location-${location.id}`}
+                    className="ui-font flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.1em] text-paper/80 transition-colors hover:text-brand-soft md:text-sm"
+                  >
+                    <Pin className="h-4 w-4 shrink-0 text-brand" />
+                    {location.city} · {location.streetAddress}
+                  </a>
+                </li>
+              ))}
+            </ul>
             <span className="hidden h-5 w-px bg-paper/25 md:block" />
             <ul className="flex items-center gap-2">
               {site.social.map((social) => (
@@ -119,7 +118,10 @@ export function Hero() {
                     aria-label={social.label}
                     className="grid h-9 w-9 place-items-center border border-paper/35 text-paper/75 transition-all hover:-translate-y-0.5 hover:border-brand hover:bg-brand hover:text-ink"
                   >
-                    <SocialIcon platform={social.platform} className="h-4 w-4" />
+                    <SocialIcon
+                      platform={social.platform}
+                      className="h-4 w-4"
+                    />
                   </a>
                 </li>
               ))}
@@ -138,7 +140,9 @@ export function Hero() {
               rel="noreferrer"
               className="group flex items-center justify-center gap-3 px-3 py-3 text-ink transition-colors hover:bg-pop md:px-8"
             >
-              <span className="display text-3xl md:text-4xl">{review.rating}</span>
+              <span className="display text-3xl md:text-4xl">
+                {review.rating}
+              </span>
               <span className="ui-font text-left text-[10px] font-bold uppercase leading-tight tracking-[0.14em] md:text-xs">
                 {review.source}
                 <br />

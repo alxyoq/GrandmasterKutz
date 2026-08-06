@@ -39,12 +39,32 @@ export interface HoursRow {
   value: string;
 }
 
-const bookingUrl =
+export interface ShopLocation {
+  id: string;
+  city: string;
+  label: string;
+  addressLine: string;
+  streetAddress: string;
+  region: string;
+  postalCode: string;
+  phone: string;
+  phoneHref: string;
+  bookingUrl: string;
+  mapEmbedUrl: string;
+  mapLinkUrl: string;
+  instagramUrl: string;
+  rating: string;
+  reviewCount: string;
+}
+
+const bellmawrBookingUrl =
   "https://booksy.com/en-us/1489481_grandmasterkutz-barbershop_barber-shop_28442_bellmawr";
+const glassboroBookingUrl =
+  "https://booksy.com/en-us/1333933_grandmaster-kutz_barber-shop_28536_glassboro";
 
 export const site = {
   brand: {
-    kicker: "BELLMAWR · NEW JERSEY",
+    kicker: "BELLMAWR · GLASSBORO",
     nameTop: "GRANDMASTER",
     nameBottom: "KUTZ",
     fullName: "GrandmasterKutz Barbershop",
@@ -63,27 +83,61 @@ export const site = {
   },
 
   seo: {
-    title: "GrandmasterKutz Barbershop | Bellmawr, NJ",
+    title: "GrandmasterKutz Barbershop | Bellmawr & Glassboro, NJ",
     description:
-      "An upscale multicultural barbershop in Bellmawr, NJ for sharp fades, beard work, kids cuts and personalized service. Walk in or book online.",
+      "Upscale multicultural barbershops in Bellmawr and Glassboro, NJ for sharp fades, beard work, kids cuts and personalized service. Choose your shop and book online.",
     url: "https://grandmasterkutz.netlify.app",
   },
 
   contact: {
-    addressLine: "805 Creek Rd, Bellmawr, NJ 08031",
-    phone: "(856) 312-8401",
-    phoneHref: "tel:+18563128401",
     email: "grandmasterkutz@gmail.com",
-    mapEmbedUrl:
-      "https://www.google.com/maps?q=GrandmasterKutz%20Barbershop%2C%20805%20Creek%20Rd%2C%20Bellmawr%2C%20NJ%2008031&output=embed",
-    mapLinkUrl:
-      "https://www.google.com/maps?place_id=ChIJi1_HBNPPxokRxFBUgkfA4dE&q=place_id%3AChIJi1_HBNPPxokRxFBUgkfA4dE",
   },
 
+  locations: [
+    {
+      id: "bellmawr",
+      city: "Bellmawr",
+      label: "Bellmawr Shop",
+      addressLine: "805 Creek Rd, Bellmawr, NJ 08031",
+      streetAddress: "805 Creek Rd",
+      region: "NJ",
+      postalCode: "08031",
+      phone: "(856) 312-8401",
+      phoneHref: "tel:+18563128401",
+      bookingUrl: bellmawrBookingUrl,
+      mapEmbedUrl:
+        "https://www.google.com/maps?q=GrandmasterKutz%20Barbershop%2C%20805%20Creek%20Rd%2C%20Bellmawr%2C%20NJ%2008031&output=embed",
+      mapLinkUrl:
+        "https://www.google.com/maps?place_id=ChIJi1_HBNPPxokRxFBUgkfA4dE&q=place_id%3AChIJi1_HBNPPxokRxFBUgkfA4dE",
+      instagramUrl: "https://www.instagram.com/grandmasterkutz/",
+      rating: "5.0",
+      reviewCount: "591 reviews",
+    },
+    {
+      id: "glassboro",
+      city: "Glassboro",
+      label: "Glassboro Shop",
+      addressLine: "640 Delsea Dr N, Glassboro, NJ 08028",
+      streetAddress: "640 Delsea Dr N",
+      region: "NJ",
+      postalCode: "08028",
+      phone: "(856) 226-3957",
+      phoneHref: "tel:+18562263957",
+      bookingUrl: glassboroBookingUrl,
+      mapEmbedUrl:
+        "https://www.google.com/maps?q=Grandmaster%20Kutz%2C%20640%20Delsea%20Dr%20N%2C%20Glassboro%2C%20NJ%2008028&output=embed",
+      mapLinkUrl:
+        "https://www.google.com/maps/search/?api=1&query=Grandmaster%20Kutz%2C%20640%20Delsea%20Dr%20N%2C%20Glassboro%2C%20NJ%2008028",
+      instagramUrl: "https://www.instagram.com/grandmasterkutzbarbershop2/",
+      rating: "5.0",
+      reviewCount: "252 reviews",
+    },
+  ] as ShopLocation[],
+
   booking: {
-    url: bookingUrl,
-    label: "BOOK YOUR CUT",
-    footerLabel: "See live availability",
+    url: "#locations",
+    label: "CHOOSE YOUR SHOP",
+    footerLabel: "Choose a location",
   },
 
   nav: [
@@ -92,7 +146,7 @@ export const site = {
     { label: "Work", href: "#gallery" },
     { label: "Visit", href: "#hours" },
     { label: "Story", href: "#about" },
-    { label: "Directions", href: "#map" },
+    { label: "Locations", href: "#locations" },
   ] as NavItem[],
 
   social: [
@@ -117,27 +171,27 @@ export const site = {
     image: "/gallery/luis-cut-2.jpg" as MediaSrc,
     video: "" as MediaSrc,
     overlay: 0.62,
-    eyebrow: "UPSCALE · MULTICULTURAL · BELLMAWR",
+    eyebrow: "UPSCALE · MULTICULTURAL · TWO LOCATIONS",
   },
 
   reviews: [
     {
-      source: "Booksy",
+      source: "Bellmawr",
       rating: "5.0",
-      count: "591 reviews",
-      href: bookingUrl,
+      count: "Booksy · 591 reviews",
+      href: bellmawrBookingUrl,
     },
     {
-      source: "Google",
-      rating: "4.8",
-      count: "139 reviews",
-      href: "https://www.google.com/maps?place_id=ChIJi1_HBNPPxokRxFBUgkfA4dE&q=place_id%3AChIJi1_HBNPPxokRxFBUgkfA4dE",
+      source: "Glassboro",
+      rating: "5.0",
+      count: "Booksy · 252 reviews",
+      href: glassboroBookingUrl,
     },
   ],
 
   team: {
     enabled: true,
-    title: "Choose Your Barber",
+    title: "Bellmawr Barbers",
     members: [
       {
         name: "Luis Manuel",
@@ -175,20 +229,20 @@ export const site = {
         href: "https://booksy.com/en-us/1027253_mandi-fresh_barber-shop_28442_bellmawr",
       },
     ] as TeamMember[],
-    joinLabel: "Compare schedules on Booksy",
-    joinHref: bookingUrl,
+    joinLabel: "Compare Bellmawr schedules",
+    joinHref: bellmawrBookingUrl,
   },
 
   services: {
     enabled: true,
     title: "Signature Services",
-    note:
-      "Starting prices shown. Each barber sets their own pricing, timing and availability—Booksy always has the live details.",
+    note: "Representative starting prices from Bellmawr. Pricing, timing and availability vary by barber and location—Booksy always has the live details.",
     items: [
       {
         name: "Men's Haircut",
         price: "FROM $40",
-        detail: "A tailored cut finished with clean edges and styling. Exact timing varies by barber.",
+        detail:
+          "A tailored cut finished with clean edges and styling. Exact timing varies by barber.",
       },
       {
         name: "Haircut + Beard",
@@ -198,7 +252,8 @@ export const site = {
       {
         name: "Kids Cut",
         price: "FROM $30",
-        detail: "Patient, detail-focused cuts for younger clients. Age ranges vary by barber.",
+        detail:
+          "Patient, detail-focused cuts for younger clients. Age ranges vary by barber.",
       },
       {
         name: "Under-18 Cut",
@@ -237,10 +292,10 @@ export const site = {
     enabled: true,
     title: "Plan Your Visit",
     backgroundImage: "/gallery/luis-cut-1.jpg" as MediaSrc,
-    note: "Hours vary by barber. Book online to see live appointment times.",
+    note: "Hours vary by barber and location. Choose your shop below to see live appointment times on Booksy.",
     rows: [
-      { day: "Listed hours", short: "Hours", value: "Mon–Fri · 9am–6pm" },
-      { day: "Weekend", short: "Weekend", value: "Check Booksy" },
+      { day: "Shop hours", short: "Hours", value: "Check Booksy" },
+      { day: "Live schedules", short: "Live", value: "By location" },
       { day: "Walk-ins", short: "Walk-ins", value: "Welcome" },
       { day: "Appointments", short: "Appts", value: "Book online 24/7" },
       { day: "Parking", short: "Parking", value: "Available" },
@@ -257,16 +312,15 @@ export const site = {
     enabled: true,
     title: "The Grandmaster Standard",
     paragraphs: [
-      "GrandmasterKutz is an upscale multicultural barbershop built for Bellmawr and the people who move through it. The team works across hair types and styles, from crisp fades and shape-ups to beard work, kids cuts and complete transformations.",
+      "GrandmasterKutz is an upscale multicultural barbershop serving Bellmawr, Glassboro and the surrounding South Jersey community. The teams work across hair types and styles, from crisp fades and shape-ups to beard work, kids cuts and complete transformations.",
       "The difference is in the detail: patient consultations, sharp finishes and a shop that welcomes both appointments and walk-ins. With hundreds of five-star Booksy reviews, the work speaks long after the cape comes off.",
     ],
   },
 
   map: {
     enabled: true,
-    title: "Find The Shop",
+    title: "Choose Your Shop",
   },
-
 } as const;
 
 export type Site = typeof site;

@@ -17,10 +17,12 @@
   <text x="84" y="337" fill="#F4EBD8" font-family="Georgia,serif" font-size="64" font-weight="700" letter-spacing="-1">GRANDMASTER</text>
   <text x="80" y="500" fill="url(#gold)" font-family="Georgia,serif" font-size="172" font-weight="700" letter-spacing="-8">KUTZ</text>
   <line x1="770" y1="125" x2="770" y2="515" stroke="#C79A3B" stroke-width="3" opacity=".6"/>
-  <text x="820" y="221" fill="#E2C272" font-family="Arial,sans-serif" font-size="22" font-weight="700" letter-spacing="6">BARBERSHOP</text>
-  <text x="820" y="283" fill="#F4EBD8" font-family="Arial,sans-serif" font-size="30" font-weight="700">Sharp cuts.</text>
-  <text x="820" y="327" fill="#F4EBD8" font-family="Arial,sans-serif" font-size="30" font-weight="700">Master-level detail.</text>
-  <text x="820" y="426" fill="#E2C272" font-family="Arial,sans-serif" font-size="20" font-weight="700" letter-spacing="2">805 CREEK ROAD</text>
-  <text x="820" y="463" fill="#F4EBD8" font-family="Arial,sans-serif" font-size="20">Bellmawr, New Jersey</text>
-  <text x="820" y="500" fill="#F4EBD8" font-family="Arial,sans-serif" font-size="20">(856) 312-8401</text>
+  <text x="820" y="210" fill="#E2C272" font-family="Arial,sans-serif" font-size="18" font-weight="700" letter-spacing="3">TWO SOUTH JERSEY SHOPS</text>
+  <text x="820" y="270" fill="#E2C272" font-family="Arial,sans-serif" font-size="30" font-weight="700">BELLMAWR</text>
+  <text x="820" y="305" fill="#F4EBD8" font-family="Arial,sans-serif" font-size="20">805 Creek Road</text>
+  <text x="820" y="335" fill="#F4EBD8" font-family="Arial,sans-serif" font-size="18">(856) 312-8401</text>
+  <line x1="820" y1="370" x2="1110" y2="370" stroke="#C79A3B" stroke-width="2" opacity=".55"/>
+  <text x="820" y="420" fill="#E2C272" font-family="Arial,sans-serif" font-size="30" font-weight="700">GLASSBORO</text>
+  <text x="820" y="455" fill="#F4EBD8" font-family="Arial,sans-serif" font-size="20">640 Delsea Drive North</text>
+  <text x="820" y="485" fill="#F4EBD8" font-family="Arial,sans-serif" font-size="18">(856) 226-3957</text>
 </svg>

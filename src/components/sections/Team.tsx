@@ -34,8 +34,8 @@ export function Team() {
         </Reveal>
         <Reveal delay={70}>
           <p className="mx-auto mb-9 max-w-lg text-center text-sm leading-relaxed text-paper/70">
-            Meet the barbers currently connected through the shop&apos;s Booksy
-            profile. Choose one to see live schedules, services and reviews.
+            Meet the barbers currently connected through the Bellmawr Booksy
+            profile. For Glassboro, choose that shop in the location section.
           </p>
         </Reveal>
 

@@ -36,9 +36,13 @@ export const metadata: Metadata = {
   keywords: [
     "barbershop Bellmawr NJ",
     "barber Bellmawr",
+    "barbershop Glassboro NJ",
+    "barber Glassboro",
     "men's haircut Bellmawr",
+    "men's haircut Glassboro",
     "kids haircut Bellmawr",
-    "beard trim Bellmawr",
+    "kids haircut Glassboro",
+    "South Jersey barbershop",
     "GrandmasterKutz",
   ],
   applicationName: site.brand.fullName,
@@ -63,7 +67,7 @@ export const metadata: Metadata = {
         url: "/og-card.png",
         width: 1200,
         height: 630,
-        alt: `${site.brand.fullName} — Bellmawr, New Jersey`,
+        alt: `${site.brand.fullName} — Bellmawr and Glassboro, New Jersey`,
       },
     ],
   },
@@ -79,34 +83,56 @@ export const metadata: Metadata = {
   },
 };
 
+const organizationId = `${site.seo.url}/#organization`;
+
 const localBusinessSchema = {
   "@context": "https://schema.org",
-  "@type": "HairSalon",
-  name: site.brand.fullName,
-  url: site.seo.url,
-  description: site.seo.description,
-  image: `${site.seo.url}/og-card.png`,
-  telephone: site.contact.phone,
-  email: site.contact.email,
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "805 Creek Rd",
-    addressLocality: "Bellmawr",
-    addressRegion: "NJ",
-    postalCode: "08031",
-    addressCountry: "US",
-  },
-  priceRange: "$$",
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "4.8",
-    reviewCount: "139",
-    bestRating: "5",
-  },
-  sameAs: [
-    "https://www.instagram.com/grandmasterkutz/",
-    "https://www.facebook.com/GrandmasterKutz/",
-    site.booking.url,
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": organizationId,
+      name: site.brand.fullName,
+      url: site.seo.url,
+      logo: `${site.seo.url}/brand-mark.png`,
+      email: site.contact.email,
+      sameAs: ["https://www.facebook.com/GrandmasterKutz/"],
+    },
+    ...site.locations.map((location) => ({
+      "@type": "HairSalon",
+      "@id": `${site.seo.url}/#${location.id}`,
+      name: `${site.brand.fullName} — ${location.city}`,
+      url: `${site.seo.url}/#location-${location.id}`,
+      parentOrganization: { "@id": organizationId },
+      description: site.seo.description,
+      image: `${site.seo.url}/og-card.png`,
+      telephone: location.phone,
+      email: site.contact.email,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: location.streetAddress,
+        addressLocality: location.city,
+        addressRegion: location.region,
+        postalCode: location.postalCode,
+        addressCountry: "US",
+      },
+      hasMap: location.mapLinkUrl,
+      priceRange: "$$",
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: location.rating,
+        reviewCount: location.reviewCount.replace(/\D/g, ""),
+        bestRating: "5",
+      },
+      sameAs: [location.instagramUrl, location.bookingUrl],
+      potentialAction: {
+        "@type": "ReserveAction",
+        target: location.bookingUrl,
+        result: {
+          "@type": "Reservation",
+          name: `Barber appointment at the ${location.city} shop`,
+        },
+      },
+    })),
   ],
 };
 
@@ -124,7 +150,9 @@ export default function RootLayout({
       <body suppressHydrationWarning className="antialiased">
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(localBusinessSchema),
+          }}
         />
         <ClientBody>{children}</ClientBody>
       </body>

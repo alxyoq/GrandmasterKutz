@@ -27,8 +27,6 @@ export function ContactBubble() {
 
               <a
                 href={site.booking.url}
-                target="_blank"
-                rel="noreferrer"
                 className="btn-comic mt-4 w-full px-4 py-3 text-xs"
               >
                 <span className="display tracking-[0.08em]">
@@ -44,13 +42,18 @@ export function ContactBubble() {
                 <span className="truncate">{site.contact.email}</span>
               </a>
 
-              <a
-                href={site.contact.phoneHref}
-                className="ui-font link-underline mt-1.5 flex items-center justify-center gap-2 text-[13px] font-medium text-ink"
-              >
-                <Phone className="h-3.5 w-3.5 shrink-0" />
-                {site.contact.phone}
-              </a>
+              <div className="mt-3 space-y-1.5">
+                {site.locations.map((location) => (
+                  <a
+                    key={location.id}
+                    href={location.phoneHref}
+                    className="ui-font link-underline flex items-center justify-center gap-2 text-[13px] font-medium text-ink"
+                  >
+                    <Phone className="h-3.5 w-3.5 shrink-0" />
+                    {location.city} · {location.phone}
+                  </a>
+                ))}
+              </div>
             </div>
 
             {/* tail */}

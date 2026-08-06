@@ -20,5 +20,5 @@
   <circle cx="396" cy="137" r="12" fill="#E2C272"/>
   <path d="M150 307h212" stroke="#C79A3B" stroke-width="8"/>
   <text x="256" y="387" fill="url(#gold)" font-family="Georgia,serif" font-size="104" font-weight="700" letter-spacing="8" text-anchor="middle">GMK</text>
-  <text x="256" y="438" fill="#F4EBD8" font-family="Arial,sans-serif" font-size="18" font-weight="700" letter-spacing="8" text-anchor="middle">BELLMAWR</text>
+  <text x="256" y="438" fill="#F4EBD8" font-family="Arial,sans-serif" font-size="16" font-weight="700" letter-spacing="6" text-anchor="middle">SOUTH JERSEY</text>
 </svg>
