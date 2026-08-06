@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F7E5A6"/>
+      <stop offset="0.5" stop-color="#C79A3B"/>
+      <stop offset="1" stop-color="#704A10"/>
+    </linearGradient>
+    <pattern id="board" width="72" height="72" patternUnits="userSpaceOnUse">
+      <rect width="36" height="36" fill="#C79A3B" fill-opacity=".075"/>
+      <rect x="36" y="36" width="36" height="36" fill="#C79A3B" fill-opacity=".075"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="#070707"/>
+  <rect width="1200" height="630" fill="url(#board)"/>
+  <rect x="28" y="28" width="1144" height="574" fill="none" stroke="url(#gold)" stroke-width="7"/>
+  <path d="M88 141l49 31 41-68 42 68 49-31-20 96H108z" fill="none" stroke="url(#gold)" stroke-width="10" stroke-linejoin="round"/>
+  <text x="84" y="337" fill="#F4EBD8" font-family="Georgia,serif" font-size="64" font-weight="700" letter-spacing="-1">GRANDMASTER</text>
+  <text x="80" y="500" fill="url(#gold)" font-family="Georgia,serif" font-size="172" font-weight="700" letter-spacing="-8">KUTZ</text>
+  <line x1="770" y1="125" x2="770" y2="515" stroke="#C79A3B" stroke-width="3" opacity=".6"/>
+  <text x="820" y="221" fill="#E2C272" font-family="Arial,sans-serif" font-size="22" font-weight="700" letter-spacing="6">BARBERSHOP</text>
+  <text x="820" y="283" fill="#F4EBD8" font-family="Arial,sans-serif" font-size="30" font-weight="700">Sharp cuts.</text>
+  <text x="820" y="327" fill="#F4EBD8" font-family="Arial,sans-serif" font-size="30" font-weight="700">Master-level detail.</text>
+  <text x="820" y="426" fill="#E2C272" font-family="Arial,sans-serif" font-size="20" font-weight="700" letter-spacing="2">805 CREEK ROAD</text>
+  <text x="820" y="463" fill="#F4EBD8" font-family="Arial,sans-serif" font-size="20">Bellmawr, New Jersey</text>
+  <text x="820" y="500" fill="#F4EBD8" font-family="Arial,sans-serif" font-size="20">(856) 312-8401</text>
+</svg>

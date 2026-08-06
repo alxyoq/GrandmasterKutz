@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">GrandmasterKutz Barbershop</title>
+  <desc id="desc">A black and gold GMK crown mark.</desc>
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F7E5A6"/>
+      <stop offset="0.48" stop-color="#C79A3B"/>
+      <stop offset="1" stop-color="#704A10"/>
+    </linearGradient>
+    <pattern id="board" width="56" height="56" patternUnits="userSpaceOnUse">
+      <rect width="28" height="28" fill="#C79A3B" fill-opacity=".08"/>
+      <rect x="28" y="28" width="28" height="28" fill="#C79A3B" fill-opacity=".08"/>
+    </pattern>
+  </defs>
+  <rect x="12" y="12" width="488" height="488" rx="42" fill="#070707"/>
+  <rect x="24" y="24" width="464" height="464" rx="32" fill="url(#board)" stroke="url(#gold)" stroke-width="8"/>
+  <path d="M116 143l76 48 64-104 64 104 76-48-31 150H147z" fill="none" stroke="url(#gold)" stroke-width="15" stroke-linejoin="round"/>
+  <circle cx="116" cy="137" r="12" fill="#E2C272"/>
+  <circle cx="256" cy="78" r="12" fill="#E2C272"/>
+  <circle cx="396" cy="137" r="12" fill="#E2C272"/>
+  <path d="M150 307h212" stroke="#C79A3B" stroke-width="8"/>
+  <text x="256" y="387" fill="url(#gold)" font-family="Georgia,serif" font-size="104" font-weight="700" letter-spacing="8" text-anchor="middle">GMK</text>
+  <text x="256" y="438" fill="#F4EBD8" font-family="Arial,sans-serif" font-size="18" font-weight="700" letter-spacing="8" text-anchor="middle">BELLMAWR</text>
+</svg>
