@@ -7,7 +7,7 @@ Production website for GrandmasterKutz Barbershop at 805 Creek Road in Bellmawr,
 - Next.js 16 App Router
 - React 18 and TypeScript
 - Tailwind CSS
-- Netlify Next.js runtime
+- Static Next.js export for Netlify
 
 ## Local development
 
@@ -24,6 +24,8 @@ Open `http://localhost:3000`.
 npm run check
 npm run build
 ```
+
+The production build is written to `out/`, which Netlify publishes directly.
 
 ## Business content sources
 
