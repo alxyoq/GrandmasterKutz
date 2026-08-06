@@ -1,0 +1,16 @@
+{
+  "name": "GrandmasterKutz Barbershop",
+  "short_name": "GrandmasterKutz",
+  "description": "Upscale multicultural barbershop in Bellmawr, New Jersey.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#070707",
+  "theme_color": "#070707",
+  "icons": [
+    {
+      "src": "/brand-mark.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,0 +1,379 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==========================================================================
+   TOKENS
+   Colour values are injected from src/config/site.ts at render time.
+   The values below are only fallbacks.
+   ========================================================================== */
+@layer base {
+  :root {
+    --ink: 7 7 7;
+    --paper: 244 235 216;
+    --brand: 199 154 59;
+    --brand-deep: 112 74 16;
+    --brand-soft: 226 194 114;
+    --pop: 247 229 166;
+
+    /* Panel geometry */
+    --stroke: 5px; /* black outline thickness   */
+    --slant: 26px; /* diagonal panel edge depth */
+    --gutter: 10px; /* paper showing between panels */
+  }
+
+  @media (max-width: 767px) {
+    :root {
+      --stroke: 4px;
+      --slant: 16px;
+      --gutter: 8px;
+    }
+  }
+
+  * {
+    border-color: rgb(var(--ink) / 0.15);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: rgb(var(--paper));
+    color: rgb(var(--ink));
+    font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: rgb(var(--pop));
+    color: rgb(var(--ink));
+  }
+
+  /* Newsprint tint over the whole page */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    pointer-events: none;
+    opacity: 0.18;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.32'/%3E%3C/svg%3E");
+  }
+
+  :focus-visible {
+    outline: 3px solid rgb(var(--ink));
+    outline-offset: 3px;
+    /* Keep the gold outer ring visible even when a component has its own shadow. */
+    box-shadow: 0 0 0 6px rgb(var(--pop)) !important;
+  }
+}
+
+/* ==========================================================================
+   COMPONENTS
+   ========================================================================== */
+@layer components {
+  /* ---- Type ------------------------------------------------------------ */
+  .display {
+    font-family: var(--font-display), Georgia, serif;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 0.9;
+  }
+
+  .ui-font {
+    font-family: var(--font-ui), ui-sans-serif, sans-serif;
+  }
+
+  /* Big white comic heading: black outline + hard drop shadow + skew */
+  .comic-title {
+    font-family: var(--font-display), Impact, sans-serif;
+    color: #fff;
+    line-height: 0.86;
+    letter-spacing: 0.02em;
+    transform: skewX(-9deg);
+    paint-order: stroke fill;
+    -webkit-text-stroke: 0.09em rgb(var(--ink));
+    text-shadow:
+      0.07em 0.07em 0 rgb(var(--ink)),
+      0.14em 0.14em 0 rgb(var(--brand-deep));
+  }
+
+  .comic-title--ink {
+    color: rgb(var(--paper));
+    -webkit-text-stroke: 0.09em rgb(var(--ink));
+    text-shadow:
+      0.07em 0.07em 0 rgb(var(--ink)),
+      0.14em 0.14em 0 rgb(var(--brand));
+  }
+
+  .stroke-label {
+    font-family: var(--font-ui), sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
+    font-weight: 600;
+  }
+
+  /* ---- Textures -------------------------------------------------------- */
+  .halftone {
+    background-image: radial-gradient(
+      rgb(var(--ink) / 0.85) 1.7px,
+      transparent 1.8px
+    );
+    background-size: 9px 9px;
+  }
+
+  .halftone-brand {
+    background-image: radial-gradient(
+      rgb(var(--brand) / 0.9) 2px,
+      transparent 2.1px
+    );
+    background-size: 10px 10px;
+  }
+
+  .halftone-light {
+    background-image: radial-gradient(
+      rgb(255 255 255 / 0.22) 1.5px,
+      transparent 1.6px
+    );
+    background-size: 8px 8px;
+  }
+
+  .royal-grid {
+    background-image:
+      linear-gradient(45deg, rgb(var(--brand) / 0.12) 25%, transparent 25%),
+      linear-gradient(-45deg, rgb(var(--brand) / 0.12) 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, rgb(var(--brand) / 0.12) 75%),
+      linear-gradient(-45deg, transparent 75%, rgb(var(--brand) / 0.12) 75%);
+    background-position:
+      0 0,
+      0 14px,
+      14px -14px,
+      -14px 0;
+    background-size: 28px 28px;
+  }
+
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.22;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23g)'/%3E%3C/svg%3E");
+  }
+
+  /* ---- Panel shapes ---------------------------------------------------- */
+  .shape-flat {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+  /* top slopes down-right, bottom slopes down-right */
+  .shape-a {
+    clip-path: polygon(
+      0 0,
+      100% var(--slant),
+      100% 100%,
+      0 calc(100% - var(--slant))
+    );
+  }
+  /* mirrored */
+  .shape-b {
+    clip-path: polygon(
+      0 var(--slant),
+      100% 0,
+      100% calc(100% - var(--slant)),
+      0 100%
+    );
+  }
+  /* only the top edge slopes up-right */
+  .shape-top-up {
+    clip-path: polygon(0 var(--slant), 100% 0, 100% 100%, 0 100%);
+  }
+  /* only the top edge slopes down-right */
+  .shape-top-down {
+    clip-path: polygon(0 0, 100% var(--slant), 100% 100%, 0 100%);
+  }
+  /* only the bottom edge slopes */
+  .shape-bottom-down {
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--slant)), 0 100%);
+  }
+  .shape-bottom-up {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - var(--slant)));
+  }
+
+  /* ---- Buttons --------------------------------------------------------- */
+  .btn-comic {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    font-family: var(--font-ui), sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: rgb(var(--ink));
+    background: rgb(var(--brand));
+    border: var(--stroke) solid rgb(var(--ink));
+    box-shadow: 7px 7px 0 rgb(var(--ink));
+    transition:
+      transform 160ms cubic-bezier(0.2, 0.9, 0.3, 1.2),
+      box-shadow 160ms cubic-bezier(0.2, 0.9, 0.3, 1.2),
+      background-color 160ms ease;
+  }
+
+  .btn-comic:hover {
+    transform: translate(3px, 3px);
+    box-shadow: 3px 3px 0 rgb(var(--ink));
+    background: rgb(var(--brand-deep));
+    color: rgb(var(--paper));
+  }
+
+  .btn-comic:active {
+    transform: translate(7px, 7px);
+    box-shadow: 0 0 0 rgb(var(--ink));
+  }
+
+  .btn-pop {
+    background: rgb(var(--pop));
+    color: rgb(var(--ink));
+  }
+  .btn-pop:hover {
+    background: rgb(var(--paper));
+    color: rgb(var(--ink));
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: rgb(var(--paper));
+    box-shadow: 7px 7px 0 rgb(var(--ink) / 0.85);
+  }
+  .btn-ghost:hover {
+    background: rgb(var(--brand));
+  }
+
+  /* ---- Misc ------------------------------------------------------------ */
+  .ink-rule {
+    height: var(--stroke);
+    background: rgb(var(--ink));
+  }
+
+  .link-underline {
+    background-image: linear-gradient(rgb(var(--pop)), rgb(var(--pop)));
+    background-size: 0% 0.28em;
+    background-position: 0 88%;
+    background-repeat: no-repeat;
+    transition: background-size 240ms cubic-bezier(0.2, 0.9, 0.3, 1);
+  }
+  .link-underline:hover {
+    background-size: 100% 0.28em;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* ==========================================================================
+   MOTION
+   ========================================================================== */
+@layer utilities {
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(26px) skewX(-2deg);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes pop-in {
+    0% {
+      opacity: 0;
+      transform: scale(0.86) rotate(-3deg);
+    }
+    70% {
+      transform: scale(1.03) rotate(0.6deg);
+    }
+    100% {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes drift {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) scale(1.06);
+    }
+    50% {
+      transform: translate3d(-1.5%, -1.5%, 0) scale(1.12);
+    }
+  }
+
+  @keyframes spin-slow {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-rise {
+    animation: rise 700ms cubic-bezier(0.18, 0.9, 0.25, 1) both;
+  }
+  .animate-pop {
+    animation: pop-in 620ms cubic-bezier(0.2, 0.9, 0.3, 1.35) both;
+  }
+  .animate-drift {
+    animation: drift 26s ease-in-out infinite;
+  }
+  .animate-spin-slow {
+    animation: spin-slow 90s linear infinite;
+  }
+  .animate-marquee {
+    animation: marquee 34s linear infinite;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition:
+      opacity 720ms cubic-bezier(0.18, 0.9, 0.25, 1),
+      transform 720ms cubic-bezier(0.18, 0.9, 0.25, 1);
+  }
+  .reveal.is-in {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+    .reveal {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
