@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Barlow, Barlow_Condensed, Cinzel } from "next/font/google";
 import "./globals.css";
 import ClientBody from "./ClientBody";
+import { PurchaseWebsiteButton } from "@/components/PurchaseWebsiteButton";
 import { site } from "@/config/site";
 import { themeStyle } from "@/lib/theme";
 
@@ -155,6 +156,7 @@ export default function RootLayout({
           }}
         />
         <ClientBody>{children}</ClientBody>
+        <PurchaseWebsiteButton />
       </body>
     </html>
   );
